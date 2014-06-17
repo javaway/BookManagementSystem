@@ -50,7 +50,7 @@
 			</tr>
 			<tr>
 				<td>Description:</td>
-				<td><form:password path="description"/></td>
+				<td><form:input path="description"/></td>
 			</tr>
 			<tr>
 				<td colspan="2" align="center">
