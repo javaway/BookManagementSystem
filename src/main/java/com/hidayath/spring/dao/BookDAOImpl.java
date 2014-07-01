@@ -70,7 +70,7 @@ public class BookDAOImpl implements IBookDAO {
 
 	@Override
 	@Transactional
-	public Book get(int id) {
+	public Book getById(int id) {
 		String hql = "from Book where id=" + id;
 		Query query = sessionFactory.getCurrentSession().createQuery(hql);
 		
@@ -81,6 +81,25 @@ public class BookDAOImpl implements IBookDAO {
 			return listBook.get(0);
 		}
 		
+		return null;
+	}
+	
+	@Override
+	@Transactional
+	public Book getByISBN(String isbn) {
+		String hql = "from Book where bookISBN like '"+ isbn+"'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		
+		System.out.println("Query is "+ query +"Query list size is "+query.list().size());
+		
+		if(query != null && query.list().size() > 0) {
+			@SuppressWarnings("unchecked")
+			List<Book> listBook = (List<Book>) query.list();
+			
+			if (listBook != null && !listBook.isEmpty()) {
+				return listBook.get(0);
+			}
+		}
 		return null;
 	}
 }

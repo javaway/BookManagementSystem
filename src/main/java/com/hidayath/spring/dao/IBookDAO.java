@@ -9,9 +9,10 @@ public interface IBookDAO {
 	
 	public List<Book> list();
 	
-	public Book get(int id);
-	
 	public void saveOrUpdate(Book book);
 	
 	public void delete(int id);
+	
+	public Book getById(int id);
+	public Book getByISBN(String isbn);
 }

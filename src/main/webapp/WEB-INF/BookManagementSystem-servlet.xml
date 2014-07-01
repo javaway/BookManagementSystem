@@ -9,10 +9,12 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-	<!-- <mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/> -->
+	<mvc:resources mapping="/bootstrap/**" location="/bootstrap/"/> 
+	<mvc:annotation-driven /> 
+	
 	<context:annotation-config />
 	<context:component-scan base-package="com.hidayath.spring" />
-	<bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="viewClass"
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix">
@@ -22,6 +24,16 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	 <!-- Tiles configuration -->
+  	<bean id="tilesConfigurer"
+        class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/tiles-definitions.xml</value>
+            </list>
+        </property>
+    </bean> 
 
 	<!-- H2 database -->
 	<bean id="dataSource"
